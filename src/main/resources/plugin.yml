@@ -1,0 +1,6 @@
+name: MarioPlugIn
+api: 1.0.0
+version: 3
+main: de.mariocst.MarioMain
+authors: [ marioCST ]
+description: marioCSTs Nukkit PlugIn

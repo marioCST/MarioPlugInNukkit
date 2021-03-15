@@ -22,33 +22,7 @@ public class SizeCommand extends Command {
             Player player = (Player) sender;
             if (player.hasPermission("mario.size") || sender.hasPermission("mario.*") || sender.hasPermission("*") || sender.isOp()) {
                 if (args.length == 1) {
-                    String str = args[0];
-                    String containsZero = "0";
-                    boolean contains0 = str.contains(containsZero);
-                    String containsOne = "1";
-                    boolean contains1 = str.contains(containsOne);
-                    String containsTwo = "2";
-                    boolean contains2 = str.contains(containsTwo);
-                    String containsThree = "3";
-                    boolean contains3 = str.contains(containsThree);
-                    String containsFour = "4";
-                    boolean contains4 = str.contains(containsFour);
-                    String containsFive = "5";
-                    boolean contains5 = str.contains(containsFive);
-                    String containsSix = "6";
-                    boolean contains6 = str.contains(containsSix);
-                    String containsSeven = "7";
-                    boolean contains7 = str.contains(containsSeven);
-                    String containsEight = "8";
-                    boolean contains8 = str.contains(containsEight);
-                    String containsNine = "9";
-                    boolean contains9 = str.contains(containsNine);
-                    String containsDot = ".";
-                    boolean containsDott = str.contains(containsDot);
-                    String containsZeroDot = "0.";
-                    boolean contains0Dot = str.contains(containsZeroDot);
-
-                    if (contains0 || contains1 || contains2 || contains3 || contains4 || contains5 || contains6 || contains7 || contains8 || contains9 || containsDott || contains0Dot) {
+                    try {
                         float getSize = Float.parseFloat(args[0]);
                         if (getSize >= 72) {
                             sender.sendMessage(MarioMain.PREFIX + "Bitte wähle eine kleinere Größe! Ab 72 laggt Minecraft hart ^^");
@@ -66,9 +40,10 @@ public class SizeCommand extends Command {
                                 player.setScale(size);
                             }
                         }
-                    } else {
-                        sender.sendMessage(MarioMain.PREFIX + "Bitte gib eine Zahl ein!");
+                    } catch (NumberFormatException e) {
+                        sender.sendMessage(MarioMain.PREFIX + "Bitte gib eine (gültige) Zahl ein!");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
+                        e.printStackTrace();
                     }
                 } else if (args.length >= 2) {
                     sender.sendMessage(MarioMain.PREFIX + "Bitte schreibe eine einspaltige Größe!");

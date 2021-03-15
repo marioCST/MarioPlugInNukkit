@@ -79,6 +79,7 @@ public class MarioMain extends PluginBase {
 
         //WTF
         commandMap.register("chatspam", new ChatSpamCommand(this));
+        commandMap.register("mason", new MasonCommand(this));
     }
 
     public static MarioMain getInstance() {

@@ -14,12 +14,12 @@ public class MarioMain extends PluginBase {
 
     public static MarioMain instance;
 
+    public static String PREFIX = "§8[§6marioCST.de§8] §b";
+
     @Override
     public void onLoad() {
         instance = this;
     }
-
-    public static String PREFIX = "§8[§6marioCST.de§8] §b";
 
     @Override
     public void onEnable() {

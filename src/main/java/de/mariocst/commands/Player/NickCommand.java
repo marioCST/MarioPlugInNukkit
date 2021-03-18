@@ -4,7 +4,9 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.level.Sound;
+import cn.nukkit.utils.Config;
 import de.mariocst.MarioMain;
+import de.mariocst.utils.Configuration;
 
 public class NickCommand extends Command {
     private MarioMain plugin;
@@ -22,7 +24,7 @@ public class NickCommand extends Command {
             if (player.hasPermission("mario.nick") || sender.hasPermission("mario.*") || sender.hasPermission("*") || sender.isOp()) {
                 if (args.length == 1) {
                     if (args[0].length() < 16) {
-                        String newNick = String.join(" ",  args);
+                        String newNick = String.join(" ", args);
                         player.setDisplayName(newNick);
                         player.setNameTag(newNick);
                         sender.sendMessage(MarioMain.PREFIX + "Dein Nickname wurde erfolgreich zu " + newNick + " geändert!");

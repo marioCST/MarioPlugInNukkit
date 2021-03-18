@@ -4,9 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.level.Sound;
-import cn.nukkit.utils.Config;
 import de.mariocst.MarioMain;
-import de.mariocst.utils.Configuration;
 
 public class NickCommand extends Command {
     private MarioMain plugin;

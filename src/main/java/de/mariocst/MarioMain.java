@@ -4,15 +4,21 @@ import cn.nukkit.command.CommandMap;
 import cn.nukkit.plugin.PluginBase;
 import de.mariocst.commands.Chat.*;
 import de.mariocst.commands.Player.*;
+import de.mariocst.commands.Server.*;
 import de.mariocst.commands.Setter.*;
 import de.mariocst.commands.Util.*;
 import de.mariocst.commands.WTF.*;
 import de.mariocst.commands.World.*;
 import de.mariocst.commands.Announcements.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MarioMain extends PluginBase {
 
     public static MarioMain instance;
+
+    private Map<String, String> lastMessagedPlayers = new HashMap<>();
 
     public static String PREFIX = "§8[§6marioCST.de§8] §b";
 
@@ -59,11 +65,15 @@ public class MarioMain extends PluginBase {
         commandMap.register("freezeme", new FreezeMeCommand(this));
         commandMap.register("gm", new GMCommand(this));
         commandMap.register("heal", new HealCommand(this));
+        commandMap.register("invsee", new InvseeCommand(this));
         commandMap.register("nick", new NickCommand(this));
         commandMap.register("realname", new RealnameCommand(this));
         commandMap.register("size", new SizeCommand(this));
+        commandMap.register("speed", new SpeedCommand(this));
         commandMap.register("unnick", new UnnickCommand(this));
-        commandMap.register("vanish", new VanishCommand(this));
+
+        // Server
+        commandMap.register("kickall", new KickAllCommand(this));
 
         // Setter
         commandMap.register("setlink", new SetLinkCommand(this));
@@ -72,6 +82,7 @@ public class MarioMain extends PluginBase {
         commandMap.register("date", new DateCommand(this));
         commandMap.register("discord", new DiscordCommand(this));
         commandMap.register("lol", new LolCommand(this));
+        commandMap.register("reply", new ReplyCommand(this));
 
         // World
         commandMap.register("day", new DayCommand(this));
@@ -84,5 +95,9 @@ public class MarioMain extends PluginBase {
 
     public static MarioMain getInstance() {
         return instance;
+    }
+
+    public Map<String, String> getLastMessagedPlayers() {
+        return lastMessagedPlayers;
     }
 }

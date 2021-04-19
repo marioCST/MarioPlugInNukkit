@@ -87,10 +87,6 @@ public class MarioMain extends PluginBase {
         // World
         commandMap.register("day", new DayCommand(this));
         commandMap.register("night", new NightCommand(this));
-
-        //WTF
-        commandMap.register("chatspam", new ChatSpamCommand(this));
-        commandMap.register("mason", new MasonCommand(this));
     }
 
     public static MarioMain getInstance() {

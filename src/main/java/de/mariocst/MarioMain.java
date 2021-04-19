@@ -61,7 +61,7 @@ public class MarioMain extends PluginBase {
         commandMap.register("die", new DieCommand(this));
         commandMap.register("dumb", new DumbCommand(this));
         commandMap.register("fly", new FlyCommand(this));
-        commandMap.register("freezeme", new FreezeMeCommand(this));
+        commandMap.register("freeze", new FreezeCommand(this));
         commandMap.register("gm", new GMCommand(this));
         commandMap.register("heal", new HealCommand(this));
         commandMap.register("invsee", new InvseeCommand(this));

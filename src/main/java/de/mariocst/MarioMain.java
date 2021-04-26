@@ -73,6 +73,7 @@ public class MarioMain extends PluginBase {
 
         // Server
         commandMap.register("kickall", new KickAllCommand(this));
+        commandMap.register("tps", new TPSCommand(this));
 
         // Setter
         commandMap.register("setlink", new SetLinkCommand(this));

@@ -68,6 +68,7 @@ public class MarioMain extends PluginBase {
         commandMap.register("nick", new NickCommand(this));
         commandMap.register("realname", new RealnameCommand(this));
         commandMap.register("size", new SizeCommand(this));
+        commandMap.register("skin", new SkinCommand(this));
         commandMap.register("speed", new SpeedCommand(this));
         commandMap.register("unnick", new UnnickCommand(this));
 

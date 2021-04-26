@@ -52,8 +52,6 @@ public class GMCommand extends Command {
             assert false;
             sender.sendMessage("Bitte führe den Befehl InGame aus!");
         }
-
-
         return false;
     }
 }

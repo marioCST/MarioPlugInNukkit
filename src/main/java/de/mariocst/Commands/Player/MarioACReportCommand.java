@@ -8,12 +8,12 @@ import de.mariocst.AntiCheat.Cheat.AntiCheat;
 import de.mariocst.AntiCheat.Cheat.inventory.ReportInvalidItemEnchantmentThread;
 import de.mariocst.MarioMain;
 
-public class ReportCommand extends Command {
+public class MarioACReportCommand extends Command {
     private MarioMain plugin;
 
-    public ReportCommand(MarioMain plugin) {
-        super("report", "Reporte einen Spieler.", "report", new String[]{"mrp"});
-        this.setPermission("mario.report");
+    public MarioACReportCommand(MarioMain plugin) {
+        super("marioacreport", "Reporte einen Spieler für das ''AntiCheat'' (Illegal Items).", "marioacreport", new String[]{"macr"});
+        this.setPermission("mario.marioacreport");
         this.plugin = plugin;
     }
 
@@ -46,7 +46,7 @@ public class ReportCommand extends Command {
                                     cheatType = AntiCheat.CheatType.INVALID_ITEM;
                                     break;
                                 default:
-                                    sender.sendMessage(MarioMain.PREFIX + "Unbekannter Report Typ! Irgendwas ist schief gelaufen.");
+                                    sender.sendMessage(MarioMain.PREFIX + "Unbekannter Report Typ! Report Types: invaliditemenchant, iie.");
                                     return true;
                             }
 

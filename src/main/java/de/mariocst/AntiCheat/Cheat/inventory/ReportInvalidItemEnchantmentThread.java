@@ -23,13 +23,23 @@ public class ReportInvalidItemEnchantmentThread extends Report implements Runnab
                 for (Item item : player.getInventory().slots.values()) {
                     if (item.hasEnchantments()) {
                         for (Enchantment e : item.getEnchantments()) {
-                            if (e.getLevel() >= 2) {
+                            if (e.getLevel() >= 10) {
+                                Server server = MarioMain.getInstance().getServer();
+
                                 player.getInventory().clearAll();
                                 String ban = "Invalid Enchantment Level detected! Please contact an Admin for a ban Appeal!";
-                                MarioMain.getInstance().getServer().getNameBans().addBan(player.getName(), ban, Date.from(Instant.ofEpochSecond(-1)), "Console");
-                                MarioMain.getInstance().getServer().getIPBans().addBan(player.getName(), ban, Date.from(Instant.ofEpochSecond(-1)), "Console");
-                                player.kick(ban, false);
-                                MarioMain.getInstance().getServer().broadcastMessage("The Player " + player.getName() + " has been banned for an illegal Enchantment! " + e.getName() + " Lv. " + e.getLevel());
+
+                                server.getNameBans().addBan(player.getName(), ban, Date.from(Instant.ofEpochSecond(7257600000L)), "Console");
+                                server.getNameBans().setEnable(true);
+                                server.getNameBans().save();
+                                server.getIPBans().addBan(player.getAddress(), ban, Date.from(Instant.ofEpochSecond(7257600000L)), "Console");
+                                server.getIPBans().setEnable(true);
+                                server.getIPBans().save();
+                                player.kick(ban);
+
+                                MarioMain.addIllegalPlayer(player);
+
+                                server.broadcastMessage("The Player " + player.getName() + " has been banned for an illegal Enchantment! " + e.getName() + " Lv. " + e.getLevel());
                             }
                         }
                     }

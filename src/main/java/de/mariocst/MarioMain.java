@@ -18,6 +18,7 @@ import de.mariocst.Commands.Setter.*;
 import de.mariocst.Commands.Util.*;
 import de.mariocst.Commands.World.*;
 import de.mariocst.Commands.Announcements.*;
+import de.mariocst.Config.PlayerIllegalItems;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,8 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
     private static MasterConfig masterConfig;
     private PlayerCheatRecord playerCheatRecord;
+    private PlayerIllegalItems playerIllegalItems;
+    private static PlayerIllegalItems playerIllegalItemsS;
 
     public static HashMap<String, Report> reportThread = new HashMap<>();
     public static HashMap<String, AntiCheat.CheatType> reportPlayer = new HashMap<>();
@@ -68,6 +71,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
             this.getLogger().warning("The Config is empty!");
         }
         playerCheatRecord = new PlayerCheatRecord(new Config(this.getDataFolder() + "/record.yml", Config.YAML).getRootSection());
+        playerIllegalItems = new PlayerIllegalItems(new Config(this.getDataFolder() + "/bannedIllegalPlayers.yml", Config.YAML).getRootSection());
     }
 
     @Override
@@ -100,7 +104,8 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         commandMap.register("invsee", new InvseeCommand(this));
         commandMap.register("nick", new NickCommand(this));
         commandMap.register("realname", new RealnameCommand(this));
-        commandMap.register("report", new ReportCommand(this));
+        commandMap.register("marioacreport", new MarioACReportCommand(this));
+        commandMap.register("marioreport", new MarioReportCommand(this));
         commandMap.register("size", new SizeCommand(this));
         commandMap.register("skin", new SkinCommand(this));
         commandMap.register("speed", new SpeedCommand(this));
@@ -135,5 +140,9 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
     public Map<String, String> getLastMessagedPlayers() {
         return lastMessagedPlayers;
+    }
+
+    public static void addIllegalPlayer(Player player) {
+        playerIllegalItemsS.addIllegalPlayer(player);
     }
 }

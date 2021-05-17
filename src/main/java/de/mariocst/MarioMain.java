@@ -13,6 +13,9 @@ import de.mariocst.AntiCheat.Config.PlayerCheatRecord;
 import de.mariocst.AntiCheat.Event.Listener.EventListener;
 import de.mariocst.Commands.Chat.*;
 import de.mariocst.Commands.Player.*;
+import de.mariocst.Commands.Send.SendActionbarCommand;
+import de.mariocst.Commands.Send.SendMessageCommand;
+import de.mariocst.Commands.Send.SendTitleCommand;
 import de.mariocst.Commands.Server.*;
 import de.mariocst.Commands.Setter.*;
 import de.mariocst.Commands.Util.*;
@@ -110,6 +113,11 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         commandMap.register("skin", new SkinCommand(this));
         commandMap.register("speed", new SpeedCommand(this));
         commandMap.register("unnick", new UnnickCommand(this));
+
+        // Send
+        commandMap.register("sendactionbar", new SendActionbarCommand(this));
+        commandMap.register("sendmessage", new SendMessageCommand(this));
+        commandMap.register("sendtitle", new SendTitleCommand(this));
 
         // Server
         commandMap.register("kickall", new KickAllCommand(this));

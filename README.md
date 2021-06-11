@@ -1,15 +1,23 @@
-The Mario PlugIn but for Nukkit and PowerNukkit
+Das Mario PlugIn, aber für Nukkit und PowerNukkit
 
--- How to use? --
+-- Wie nutzt man es? --
 
-Download everything. Create with IntelliJ (recommended) a new Maven Project. Use JDK 1.14.
+Den Source Code downloaden. Öffne den Inhalt der ZIP in IntelliJ (recommended). Nutze JDK 1.14.
 
--- What is allowed? --
+-- Was ist erlaubt? --
 
-You can modify every class. Publishing is allowed too. You can do everything with it.
+Du darfst alles modifizieren, veröffentlichen und eigentlich alles machen, was du willst.
 
--- What can I do, if I use Eclipse? --
+-- Was tun, wenn ich Eclipse nutze? --
 
 idk lol
 
-P.S.: Please share any issues!
+-- Tools --
+
+[IntelliJ](https://www.jetbrains.com/idea/download/)
+
+[JDK](https://jdk.java.net/java-se-ri/14) [Oracle](https://www.oracle.com/de/java/technologies/javase/jdk14-archive-downloads.html) kann man aber auch über IntelliJ downloaden
+
+[Fake Inventories](https://ci.opencollab.dev//job/NukkitX/job/FakeInventories/job/master/) für Invsee
+
+P.S.: BITTE Fehler in den Issues teilen! Pull Requests sind auch nett :)

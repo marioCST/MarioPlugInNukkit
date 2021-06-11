@@ -108,10 +108,10 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         commandMap.register("gm", new GMCommand(this));
         commandMap.register("heal", new HealCommand(this));
         commandMap.register("nick", new NickCommand(this));
-        commandMap.register("realname", new RealnameCommand(this));
+        commandMap.register("realname", new RealnameCommand(this)); //Broken
         commandMap.register("size", new SizeCommand(this));
         commandMap.register("skin", new SkinCommand(this));
-        commandMap.register("speed", new SpeedCommand(this));
+        commandMap.register("speed", new SpeedCommand(this)); //Broken
         commandMap.register("unnick", new UnnickCommand(this));
 
         //Report
@@ -125,7 +125,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
         // Server
         commandMap.register("kickall", new KickAllCommand(this));
-        commandMap.register("tps", new TPSCommand(this));
+        commandMap.register("tps", new TPSCommand(this)); //Broken?
 
         // Setter
         commandMap.register("setlink", new SetLinkCommand(this));

@@ -1,4 +1,4 @@
-package de.mariocst.Commands.Player;
+package de.mariocst.Commands.Inventory;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;

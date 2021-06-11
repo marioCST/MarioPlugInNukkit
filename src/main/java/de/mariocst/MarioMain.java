@@ -12,16 +12,16 @@ import de.mariocst.AntiCheat.Config.MasterConfig;
 import de.mariocst.AntiCheat.Config.PlayerCheatRecord;
 import de.mariocst.AntiCheat.Event.Listener.EventListener;
 import de.mariocst.Commands.Chat.*;
+import de.mariocst.Commands.Inventory.*;
 import de.mariocst.Commands.Player.*;
-import de.mariocst.Commands.Send.SendActionbarCommand;
-import de.mariocst.Commands.Send.SendMessageCommand;
-import de.mariocst.Commands.Send.SendTitleCommand;
+import de.mariocst.Commands.Report.*;
+import de.mariocst.Commands.Send.*;
 import de.mariocst.Commands.Server.*;
 import de.mariocst.Commands.Setter.*;
 import de.mariocst.Commands.Util.*;
 import de.mariocst.Commands.World.*;
 import de.mariocst.Commands.Announcements.*;
-import de.mariocst.Config.PlayerIllegalItems;
+import de.mariocst.Config.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,23 +96,27 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         commandMap.register("broadcast", new BroadcastCommand(this));
         commandMap.register("chatclear", new ChatClearCommand(this));
 
-        // Player
+        //Inventory
         commandMap.register("clear", new ClearInventoryCommand(this));
+        commandMap.register("invsee", new InvseeCommand(this));
+
+        // Player
         commandMap.register("die", new DieCommand(this));
         commandMap.register("dumb", new DumbCommand(this));
         commandMap.register("fly", new FlyCommand(this));
         commandMap.register("freeze", new FreezeCommand(this));
         commandMap.register("gm", new GMCommand(this));
         commandMap.register("heal", new HealCommand(this));
-        commandMap.register("invsee", new InvseeCommand(this));
         commandMap.register("nick", new NickCommand(this));
         commandMap.register("realname", new RealnameCommand(this));
-        commandMap.register("marioacreport", new MarioACReportCommand(this));
-        commandMap.register("marioreport", new MarioReportCommand(this));
         commandMap.register("size", new SizeCommand(this));
         commandMap.register("skin", new SkinCommand(this));
         commandMap.register("speed", new SpeedCommand(this));
         commandMap.register("unnick", new UnnickCommand(this));
+
+        //Report
+        commandMap.register("marioacreport", new MarioACReportCommand(this));
+        commandMap.register("marioreport", new MarioReportCommand(this));
 
         // Send
         commandMap.register("sendactionbar", new SendActionbarCommand(this));

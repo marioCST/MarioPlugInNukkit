@@ -2,7 +2,7 @@ Das Mario PlugIn, aber für Nukkit und PowerNukkit
 
 -- Wie nutzt man es? --
 
-Den Source Code downloaden. Öffne den Inhalt der ZIP in IntelliJ (recommended). Nutze JDK 1.14.
+Den Source Code downloaden. Öffne den Inhalt der ZIP in IntelliJ (empfohlen). Nutze JDK 1.14.
 
 -- Was ist erlaubt? --
 

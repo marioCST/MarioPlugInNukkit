@@ -32,4 +32,5 @@ public class ClearInventoryCommand extends Command {
         }
         return false;
     }
+
 }

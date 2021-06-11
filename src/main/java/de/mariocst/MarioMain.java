@@ -157,4 +157,5 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
     public static void addIllegalPlayer(Player player) {
         playerIllegalItemsS.addIllegalPlayer(player);
     }
+
 }

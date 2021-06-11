@@ -101,4 +101,5 @@ public class MarioReportCommand extends Command {
         }
         return false;
     }
+
 }

@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.level.Sound;
+import cn.nukkit.potion.Effect;
 import de.mariocst.MarioMain;
 
 public class SpeedCommand extends Command {
@@ -20,7 +21,7 @@ public class SpeedCommand extends Command {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             if (sender.hasPermission("mario.speed") || sender.hasPermission("mario.*") || sender.hasPermission("*") || sender.isOp()) {
-                /*try {
+                try {
                     if (args.length == 1) {
                         if (args[0].equalsIgnoreCase("reset")) {
                             player.removeEffect(Effect.SPEED);
@@ -106,8 +107,7 @@ public class SpeedCommand extends Command {
                     e.printStackTrace();
                     sender.sendMessage(MarioMain.PREFIX + "Ungültige Parameter Länge!");
                     player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
-                }*/
-                sender.sendMessage(MarioMain.PREFIX + "Der Befehl hat keinen Bock, weil der Effekt irgendwie nicht geht...");
+                }
             } else {
                 sender.sendMessage(MarioMain.PREFIX + "Keine Rechte!");
                 player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);

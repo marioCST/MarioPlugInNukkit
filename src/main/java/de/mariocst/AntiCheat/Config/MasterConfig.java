@@ -26,7 +26,7 @@ public class MasterConfig {
     }
 
     private void spawnDefaultConfig() {
-        MarioMain.getInstance().getLogger().notice("Start spawning default config.");
+        MarioMain.getInstance().getLogger().notice("Erstelle default Config.");
         invalidItemEnchantmentCheck = true;
         save();
     }

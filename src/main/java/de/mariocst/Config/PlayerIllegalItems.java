@@ -27,7 +27,7 @@ public class PlayerIllegalItems {
     }
 
     private void spawnDefaultConfig() {
-        MarioMain.getInstance().getLogger().notice("Start spawning default config.");
+        MarioMain.getInstance().getLogger().notice("Erstelle default Config.");
         save();
     }
 

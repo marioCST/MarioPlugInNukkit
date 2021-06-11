@@ -71,7 +71,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         Config c = new Config(this.getDataFolder() + "/config.yml", Config.YAML);
         masterConfig = new MasterConfig(c.getRootSection());
         if (masterConfig.isEmpty()) {
-            this.getLogger().warning("The Config is empty!");
+            this.getLogger().warning("Die Config ist leer!");
         }
         playerCheatRecord = new PlayerCheatRecord(new Config(this.getDataFolder() + "/record.yml", Config.YAML).getRootSection());
         playerIllegalItems = new PlayerIllegalItems(new Config(this.getDataFolder() + "/bannedIllegalPlayers.yml", Config.YAML).getRootSection());

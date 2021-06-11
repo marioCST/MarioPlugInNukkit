@@ -15,7 +15,9 @@ idk lol
 -- Tools --
 
 [IntelliJ](https://www.jetbrains.com/idea/download/)
+
 [JDK](https://jdk.java.net/java-se-ri/14) [Oracle](https://www.oracle.com/de/java/technologies/javase/jdk14-archive-downloads.html) kann man aber auch über IntelliJ downloaden
+
 [Fake Inventories](https://ci.opencollab.dev//job/NukkitX/job/FakeInventories/job/master/) für Invsee
 
 P.S.: BITTE Fehler in den Issues teilen! Pull Requests sind auch nett :)

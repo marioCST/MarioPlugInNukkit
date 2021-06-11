@@ -10,7 +10,7 @@ public class ReplyCommand extends Command {
     private MarioMain plugin;
 
     public ReplyCommand(MarioMain plugin) {
-        super("reply", "Du bist dumm.", "reply", new String[]{"r"});
+        super("reply", "Antworte einem mit /msg geschriebem Spieler.", "reply", new String[]{"r"});
         this.setPermission("mario.reply");
         this.plugin = plugin;
     }

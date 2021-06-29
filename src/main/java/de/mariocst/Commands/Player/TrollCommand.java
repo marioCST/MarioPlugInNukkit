@@ -103,13 +103,13 @@ public class TrollCommand extends Command {
                         }
                     }
                     else {
-                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt> <Spieler>!");
+                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin> <Spieler>!");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                     }
                 }
                 catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
-                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt> <Spieler>!");
+                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin> <Spieler>!");
                     player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                 }
             } else {
@@ -189,12 +189,12 @@ public class TrollCommand extends Command {
                     }
                 }
                 else {
-                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt> <Spieler>!");
+                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin> <Spieler>!");
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
-                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt> <Spieler>!");
+                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin> <Spieler>!");
             }
         }
         return false;

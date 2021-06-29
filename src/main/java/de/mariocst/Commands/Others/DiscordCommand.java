@@ -1,4 +1,4 @@
-package de.mariocst.Commands.Util;
+package de.mariocst.Commands.Others;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
@@ -22,9 +22,9 @@ public class DiscordCommand extends Command {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             if (sender.hasPermission("mario.discord") || sender.hasPermission("mario.*") || sender.hasPermission("*") || sender.isOp()) {
-                sender.sendMessage(MarioMain.PREFIX + "Unser Discord: " + SetLinkCommand.Link);
+                sender.sendMessage(MarioMain.getPrefix() + "Unser Discord: " + SetLinkCommand.Link);
             } else {
-                sender.sendMessage(MarioMain.PREFIX + "Keine Rechte!");
+                sender.sendMessage(MarioMain.getPrefix() + "Keine Rechte!");
                 player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
             }
         } else {

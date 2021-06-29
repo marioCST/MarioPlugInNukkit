@@ -28,20 +28,20 @@ public class RealnameCommand extends Command {
 
                         if (null != targetPlayer) {
                             if (targetPlayer.getName().equals(args[0])) {
-                                sender.sendMessage(MarioMain.PREFIX + "Dieser Spieler ist NICHT genickt!");
+                                sender.sendMessage(MarioMain.getPrefix() + "Dieser Spieler ist NICHT genickt!");
                                 player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                             } else {
-                                sender.sendMessage(MarioMain.PREFIX + "Der Echte Name von " + args[0] + " ist: " + targetPlayer.getName());
+                                sender.sendMessage(MarioMain.getPrefix() + "Der Echte Name von " + args[0] + " ist: " + targetPlayer.getName());
                             }
                         } else {
-                            sender.sendMessage(MarioMain.PREFIX + "java.lang.NullPointerException");
+                            sender.sendMessage(MarioMain.getPrefix() + "java.lang.NullPointerException");
                             player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                         }
                     } else if (args.length == 0) {
-                        sender.sendMessage(MarioMain.PREFIX + "Bitte gib den Nickname an.");
+                        sender.sendMessage(MarioMain.getPrefix() + "Bitte gib den Nickname an.");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                     } else {
-                        sender.sendMessage(MarioMain.PREFIX + "Bitte gib einen gültigen Nickname an.");
+                        sender.sendMessage(MarioMain.getPrefix() + "Bitte gib einen gültigen Nickname an.");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                     }
                 } else {
@@ -49,7 +49,7 @@ public class RealnameCommand extends Command {
                     player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                 }
             } else {
-                sender.sendMessage(MarioMain.PREFIX + "Keine Rechte!");
+                sender.sendMessage(MarioMain.getPrefix() + "Keine Rechte!");
                 player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
             }
         } else {

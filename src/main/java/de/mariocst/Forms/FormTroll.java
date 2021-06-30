@@ -40,7 +40,7 @@ public class FormTroll {
                 .addButton(new ElementButton("§6TNT", new ElementButtonImageData("path", "textures/blocks/tnt_side.png")), e -> this.openTNTMenu(player))
                 .addButton(new ElementButton("§6Pumpkin", new ElementButtonImageData("path", "textures/blocks/pumpkin_face_off.png")), e -> this.openPumpkinMenu(player))
                 .addButton(new ElementButton("§6Inventory", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/nickhider.png")), e -> this.openInventoryTrollMenu(player))
-                .addButton(new ElementButton("§6Move", new ElementButtonImageData("url", "")), e -> this.openMoveMenu(player))
+                .addButton(new ElementButton("§6Move", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/togglesprint.png")), e -> this.openMoveMenu(player))
                 .build();
         form.send(player);
     }

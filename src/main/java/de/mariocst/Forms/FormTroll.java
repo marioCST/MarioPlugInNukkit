@@ -5,12 +5,18 @@ import cn.nukkit.Player;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
+import cn.nukkit.entity.weather.EntityLightning;
+import cn.nukkit.event.weather.LightningStrikeEvent;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.element.ElementInput;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.level.Sound;
+import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.nbt.tag.DoubleTag;
+import cn.nukkit.nbt.tag.FloatTag;
+import cn.nukkit.nbt.tag.ListTag;
 import de.mariocst.Forms.custom.CustomForm;
 import de.mariocst.Forms.simple.SimpleForm;
 import de.mariocst.MarioMain;
@@ -41,6 +47,7 @@ public class FormTroll {
                 .addButton(new ElementButton("§6Pumpkin", new ElementButtonImageData("path", "textures/blocks/pumpkin_face_off.png")), e -> this.openPumpkinMenu(player))
                 .addButton(new ElementButton("§6Inventory", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/nickhider.png")), e -> this.openInventoryTrollMenu(player))
                 .addButton(new ElementButton("§6Move", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/togglesprint.png")), e -> this.openMoveMenu(player))
+                .addButton(new ElementButton("§6Lightningstrike", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/lightningstrike.png")), e -> this.openLightningstrikeMenu(player))
                 .build();
         form.send(player);
     }
@@ -256,6 +263,47 @@ public class FormTroll {
 
                                 player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
                             }
+                        }
+                        else {
+                            MarioMain.unknownPlayer(t);
+                        }
+                    }
+                    catch (NullPointerException n) {
+                        n.printStackTrace();
+                        MarioMain.unknownPlayer(t);
+                    }
+                })
+                .build();
+        form.send(player);
+    }
+
+    public void openLightningstrikeMenu(Player player) {
+        CustomForm form = new CustomForm.Builder("§6Lightningstrike")
+                .addElement(new ElementInput("Spieler", player.getName()))
+                .onSubmit((e, r) -> {
+                    if (r.getInputResponse(0).isEmpty()) {
+                        player.sendMessage(MarioMain.getPrefix() + "Bitte gib einen Spieler Namen ein!");
+                        player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
+                    }
+
+                    Player t = MarioMain.getInstance().getServer().getPlayer(r.getInputResponse(0).replaceAll("_", " ").replaceAll("\"", ""));
+
+                    try {
+                        if (t != null) {
+                            CompoundTag nbt = new CompoundTag()
+                                    .putList(new ListTag<DoubleTag>("Pos").add(new DoubleTag("", t.getX()))
+                                            .add(new DoubleTag("", t.getY())).add(new DoubleTag("", t.getZ())))
+                                    .putList(new ListTag<DoubleTag>("Motion").add(new DoubleTag("", 0))
+                                            .add(new DoubleTag("", 0)).add(new DoubleTag("", 0)))
+                                    .putList(new ListTag<FloatTag>("Rotation").add(new FloatTag("", 0))
+                                            .add(new FloatTag("", 0)));
+
+                            EntityLightning bolt = new EntityLightning(t.getChunk(), nbt);
+                            LightningStrikeEvent event = new LightningStrikeEvent(t.getLevel(), bolt);
+
+                            MarioMain.getInstance().getServer().getPluginManager().callEvent(event);
+
+                            player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                         }
                         else {
                             MarioMain.unknownPlayer(t);

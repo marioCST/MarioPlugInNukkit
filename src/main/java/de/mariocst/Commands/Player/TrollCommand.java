@@ -135,7 +135,7 @@ public class TrollCommand extends Command {
                                         player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                     }
                                     default -> {
-                                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
                                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                                     }
                                 }
@@ -152,13 +152,13 @@ public class TrollCommand extends Command {
                         }
                     }
                     else {
-                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                     }
                 }
                 catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
-                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
                     player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                 }
             } else {
@@ -249,7 +249,23 @@ public class TrollCommand extends Command {
                                         sender.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
                                     }
                                 }
-                                default -> sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                                case "thunderstrike", "ts", "strike" -> {
+                                    CompoundTag nbt = new CompoundTag()
+                                            .putList(new ListTag<DoubleTag>("Pos").add(new DoubleTag("", t.getX()))
+                                                    .add(new DoubleTag("", t.getY())).add(new DoubleTag("", t.getZ())))
+                                            .putList(new ListTag<DoubleTag>("Motion").add(new DoubleTag("", 0))
+                                                    .add(new DoubleTag("", 0)).add(new DoubleTag("", 0)))
+                                            .putList(new ListTag<FloatTag>("Rotation").add(new FloatTag("", 0))
+                                                    .add(new FloatTag("", 0)));
+
+                                    EntityLightning bolt = new EntityLightning(t.getChunk(), nbt);
+                                    LightningStrikeEvent event = new LightningStrikeEvent(t.getLevel(), bolt);
+
+                                    MarioMain.getInstance().getServer().getPluginManager().callEvent(event);
+
+                                    sender.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
+                                }
+                                default -> sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
                             }
                         }
                         else {
@@ -262,12 +278,12 @@ public class TrollCommand extends Command {
                     }
                 }
                 else {
-                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
-                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
+                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move|thunderstrike> <Spieler>!");
             }
         }
         return false;

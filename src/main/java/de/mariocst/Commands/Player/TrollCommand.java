@@ -5,9 +5,18 @@ import cn.nukkit.Player;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.entity.weather.EntityLightning;
+import cn.nukkit.entity.weather.EntityLightningStrike;
+import cn.nukkit.event.entity.EntityExplosionPrimeEvent;
+import cn.nukkit.event.entity.ExplosionPrimeEvent;
+import cn.nukkit.event.weather.LightningStrikeEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.level.Sound;
+import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.nbt.tag.DoubleTag;
+import cn.nukkit.nbt.tag.FloatTag;
+import cn.nukkit.nbt.tag.ListTag;
 import de.mariocst.MarioMain;
 
 public class TrollCommand extends Command {
@@ -108,6 +117,22 @@ public class TrollCommand extends Command {
 
                                             player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
                                         }
+                                    }
+                                    case "thunderstrike", "ts", "strike" -> {
+                                        CompoundTag nbt = new CompoundTag()
+                                                .putList(new ListTag<DoubleTag>("Pos").add(new DoubleTag("", t.getX()))
+                                                        .add(new DoubleTag("", t.getY())).add(new DoubleTag("", t.getZ())))
+                                                .putList(new ListTag<DoubleTag>("Motion").add(new DoubleTag("", 0))
+                                                        .add(new DoubleTag("", 0)).add(new DoubleTag("", 0)))
+                                                .putList(new ListTag<FloatTag>("Rotation").add(new FloatTag("", 0))
+                                                        .add(new FloatTag("", 0)));
+
+                                        EntityLightning bolt = new EntityLightning(t.getChunk(), nbt);
+                                        LightningStrikeEvent event = new LightningStrikeEvent(t.getLevel(), bolt);
+
+                                        MarioMain.getInstance().getServer().getPluginManager().callEvent(event);
+
+                                        player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " hat einen Schlag!");
                                     }
                                     default -> {
                                         player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");

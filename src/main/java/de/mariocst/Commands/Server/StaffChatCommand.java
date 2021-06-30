@@ -22,11 +22,25 @@ public class StaffChatCommand extends Command {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             if(player.hasPermission("mario.staff") || sender.hasPermission("mario.*") || sender.hasPermission("*") || sender.isOp()) {
-                for (Player staff : MarioMain.getInstance().getServer().getOnlinePlayers().values()) {
-                    if (staff.hasPermission("mario.staff")) {
-                        staff.sendMessage("§8[§6StaffChat§8] §7" + player.getName() + " §6" + message.replaceAll("&", "§"));
+                if (args.length == 0) {
+                    if (MarioMain.getInstance().staffChat.contains(player)) {
+                        MarioMain.getInstance().staffChat.remove(player);
 
-                        MarioMain.getInstance().getServer().getConsoleSender().sendMessage("§8[§6StaffChat§8] §7" + player.getName() + " §6" + message.replaceAll("&", "§"));
+                        player.sendMessage(MarioMain.getPrefix() + "Du schreibst nun nicht mehr in den Staff Chat!");
+                    }
+                    else {
+                        MarioMain.getInstance().staffChat.add(player);
+
+                        player.sendMessage(MarioMain.getPrefix() + "Du schreibst nun in den Staff Chat!");
+                    }
+                }
+                else {
+                    MarioMain.getInstance().getServer().getConsoleSender().sendMessage("§8[§6StaffChat§8] §7" + player.getName() + " §8>> §6" + message.replaceAll("&", "§"));
+
+                    for (Player staff : MarioMain.getInstance().getServer().getOnlinePlayers().values()) {
+                        if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
+                            staff.sendMessage("§8[§6StaffChat§8] §7" + player.getName() + " §8>> §6" + message.replaceAll("&", "§"));
+                        }
                     }
                 }
             } else {
@@ -34,11 +48,11 @@ public class StaffChatCommand extends Command {
                 player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
             }
         } else {
-            for (Player staff : MarioMain.getInstance().getServer().getOnlinePlayers().values()) {
-                if (staff.hasPermission("mario.staff")) {
-                    staff.sendMessage("§8[§6StaffChat§8] §dKonsole §6" + message.replaceAll("&", "§"));
+            MarioMain.getInstance().getServer().getConsoleSender().sendMessage("§8[§6StaffChat§8] §dKonsole §8>> §6" + message.replaceAll("&", "§"));
 
-                    MarioMain.getInstance().getServer().getConsoleSender().sendMessage("§8[§6StaffChat§8] §dKonsole §6" + message.replaceAll("&", "§"));
+            for (Player staff : MarioMain.getInstance().getServer().getOnlinePlayers().values()) {
+                if (staff.hasPermission("mario.staff") || staff.hasPermission("mario.*") || staff.hasPermission("*") || staff.isOp()) {
+                    staff.sendMessage("§8[§6StaffChat§8] §dKonsole §8>> §6" + message.replaceAll("&", "§"));
                 }
             }
         }

@@ -57,6 +57,10 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
     public List<Player> invTroll = new ArrayList<>();
     public List<Player> moveTroll = new ArrayList<>();
 
+    public List<Player> staffChat = new ArrayList<>();
+
+    public List<Player> muted = new ArrayList<>();
+
     @Getter
     public FormTroll formTroll;
 
@@ -122,6 +126,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         // Chat
         commandMap.register("broadcast", new BroadcastCommand(this));
         commandMap.register("chatclear", new ChatClearCommand(this));
+        commandMap.register("mute", new MuteCommand(this));
 
         //Inventory
         commandMap.register("clear", new ClearInventoryCommand(this));
@@ -194,6 +199,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         PluginManager manager = this.getServer().getPluginManager();
 
         manager.registerEvents(new AchievementListener(), this);
+        manager.registerEvents(new ChatListener(), this);
         manager.registerEvents(new EventListener(), this);
         manager.registerEvents(new FormListener(), this);
         manager.registerEvents(new HungerListener(), this);

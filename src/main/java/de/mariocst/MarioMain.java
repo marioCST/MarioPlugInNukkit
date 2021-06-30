@@ -171,6 +171,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
         // Server
         commandMap.register("kickall", new KickAllCommand(this));
+        commandMap.register("staffchat", new StaffChatCommand(this));
         commandMap.register("tps", new TPSCommand(this));
         if (this.getServer().getPluginManager().getPlugin("PlotSquared") != null) {
             commandMap.register("rand", new RandCommand(this));

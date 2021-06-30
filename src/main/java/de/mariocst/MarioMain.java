@@ -33,7 +33,9 @@ import de.mariocst.Forms.FormTroll;
 import de.mariocst.Listeners.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MarioMain extends PluginBase implements AntiCheatAPI {
@@ -51,6 +53,8 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
     public static HashMap<String, Report> reportThread = new HashMap<>();
     public static HashMap<String, AntiCheat.CheatType> reportPlayer = new HashMap<>();
+
+    public List<Player> invTroll = new ArrayList<>();
 
     @Getter
     public FormTroll formTroll;
@@ -191,6 +195,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         manager.registerEvents(new EventListener(), this);
         manager.registerEvents(new FormListener(), this);
         manager.registerEvents(new HungerListener(), this);
+        manager.registerEvents(new InventoryListener(), this);
         manager.registerEvents(new UIListener(), this);
 
         if (this.getServer().getPluginManager().getPlugin("PlotSquared") != null) {

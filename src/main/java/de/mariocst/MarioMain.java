@@ -55,6 +55,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
     public static HashMap<String, AntiCheat.CheatType> reportPlayer = new HashMap<>();
 
     public List<Player> invTroll = new ArrayList<>();
+    public List<Player> moveTroll = new ArrayList<>();
 
     @Getter
     public FormTroll formTroll;
@@ -196,6 +197,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         manager.registerEvents(new FormListener(), this);
         manager.registerEvents(new HungerListener(), this);
         manager.registerEvents(new InventoryListener(), this);
+        manager.registerEvents(new MoveListener(), this);
         manager.registerEvents(new UIListener(), this);
 
         if (this.getServer().getPluginManager().getPlugin("PlotSquared") != null) {

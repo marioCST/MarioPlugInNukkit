@@ -40,6 +40,7 @@ public class FormTroll {
                 .addButton(new ElementButton("§6TNT", new ElementButtonImageData("path", "textures/blocks/tnt_side.png")), e -> this.openTNTMenu(player))
                 .addButton(new ElementButton("§6Pumpkin", new ElementButtonImageData("path", "textures/blocks/pumpkin_face_off.png")), e -> this.openPumpkinMenu(player))
                 .addButton(new ElementButton("§6Inventory", new ElementButtonImageData("url", "https://raw.githubusercontent.com/marioCST/MarioPlugInNukkit/master/src/main/resources/textures/nickhider.png")), e -> this.openInventoryTrollMenu(player))
+                .addButton(new ElementButton("§6Move", new ElementButtonImageData("url", "")), e -> this.openMoveMenu(player))
                 .build();
         form.send(player);
     }
@@ -217,6 +218,43 @@ public class FormTroll {
                                 MarioMain.getInstance().invTroll.add(t);
 
                                 player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf nun nicht mehr sein Inventar benutzen!");
+                            }
+                        }
+                        else {
+                            MarioMain.unknownPlayer(t);
+                        }
+                    }
+                    catch (NullPointerException n) {
+                        n.printStackTrace();
+                        MarioMain.unknownPlayer(t);
+                    }
+                })
+                .build();
+        form.send(player);
+    }
+
+    public void openMoveMenu(Player player) {
+        CustomForm form = new CustomForm.Builder("§6Move")
+                .addElement(new ElementInput("Spieler", player.getName()))
+                .onSubmit((e, r) -> {
+                    if (r.getInputResponse(0).isEmpty()) {
+                        player.sendMessage(MarioMain.getPrefix() + "Bitte gib einen Spieler Namen ein!");
+                        player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
+                    }
+
+                    Player t = MarioMain.getInstance().getServer().getPlayer(r.getInputResponse(0).replaceAll("_", " ").replaceAll("\"", ""));
+
+                    try {
+                        if (t != null) {
+                            if (MarioMain.getInstance().moveTroll.contains(t)) {
+                                MarioMain.getInstance().moveTroll.remove(t);
+
+                                player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun wieder bewegen!");
+                            }
+                            else {
+                                MarioMain.getInstance().moveTroll.add(t);
+
+                                player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
                             }
                         }
                         else {

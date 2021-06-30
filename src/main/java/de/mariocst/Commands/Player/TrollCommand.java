@@ -97,8 +97,20 @@ public class TrollCommand extends Command {
                                             player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf nun nicht mehr sein Inventar benutzen!");
                                         }
                                     }
+                                    case "move" -> {
+                                        if (MarioMain.getInstance().moveTroll.contains(t)) {
+                                            MarioMain.getInstance().moveTroll.remove(t);
+
+                                            player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun wieder bewegen!");
+                                        }
+                                        else {
+                                            MarioMain.getInstance().moveTroll.add(t);
+
+                                            player.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
+                                        }
+                                    }
                                     default -> {
-                                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
                                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                                     }
                                 }
@@ -115,13 +127,13 @@ public class TrollCommand extends Command {
                         }
                     }
                     else {
-                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                        player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
                         player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                     }
                 }
                 catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
-                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                    player.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
                     player.getLevel().addSound(player.getLocation(), Sound.RANDOM_ANVIL_LAND);
                 }
             } else {
@@ -200,7 +212,19 @@ public class TrollCommand extends Command {
                                         sender.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf nun nicht mehr sein Inventar benutzen!");
                                     }
                                 }
-                                default -> sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                                case "move" -> {
+                                    if (MarioMain.getInstance().moveTroll.contains(t)) {
+                                        MarioMain.getInstance().moveTroll.remove(t);
+
+                                        sender.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun wieder bewegen!");
+                                    }
+                                    else {
+                                        MarioMain.getInstance().moveTroll.add(t);
+
+                                        sender.sendMessage(MarioMain.getPrefix() + "Der Spieler " + t.getName() + " darf sich nun nicht mehr bewegen!");
+                                    }
+                                }
+                                default -> sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
                             }
                         }
                         else {
@@ -213,12 +237,12 @@ public class TrollCommand extends Command {
                     }
                 }
                 else {
-                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                    sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
-                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory> <Spieler>!");
+                sender.sendMessage(MarioMain.getPrefix() + "/troll <drop|damage|tnt|pumpkin|inventory|move> <Spieler>!");
             }
         }
         return false;

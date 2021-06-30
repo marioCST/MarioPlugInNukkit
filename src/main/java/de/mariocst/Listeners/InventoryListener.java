@@ -17,8 +17,6 @@ public class InventoryListener implements Listener {
         for (Player trolled : MarioMain.getInstance().invTroll) {
             if (event.getInventory() == player.getInventory()) {
                 event.setCancelled(true);
-
-                player.sendMessage(MarioMain.getPrefix() + "Nope!");
             }
         }
     }
@@ -29,8 +27,6 @@ public class InventoryListener implements Listener {
 
         for (Player trolled : MarioMain.getInstance().invTroll) {
             event.setCancelled(true);
-
-            player.sendMessage(MarioMain.getPrefix() + "Nope!");
         }
     }
 
@@ -40,8 +36,6 @@ public class InventoryListener implements Listener {
             for (Player viewer : event.getViewers()) {
                 if (viewer == trolled) {
                     event.setCancelled(true);
-
-                    trolled.sendMessage(MarioMain.getPrefix() + "Nope!");
                 }
             }
         }

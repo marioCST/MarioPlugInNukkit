@@ -38,11 +38,11 @@ import java.util.Map;
 
 public class MarioMain extends PluginBase implements AntiCheatAPI {
 
-    public static MarioMain instance;
+    private static MarioMain instance;
 
     private Map<String, String> lastMessagedPlayers = new HashMap<>();
 
-    public static String prefix = "§8[§6marioCST.de§8] §b";
+    private static String prefix = "§8[§6marioCST.de§8] §b";
 
     private static MasterConfig masterConfig;
     private PlayerCheatRecord playerCheatRecord;

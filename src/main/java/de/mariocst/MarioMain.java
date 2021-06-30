@@ -191,7 +191,6 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         manager.registerEvents(new EventListener(), this);
         manager.registerEvents(new FormListener(), this);
         manager.registerEvents(new HungerListener(), this);
-
         manager.registerEvents(new UIListener(), this);
 
         if (this.getServer().getPluginManager().getPlugin("PlotSquared") != null) {

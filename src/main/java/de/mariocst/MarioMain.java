@@ -42,7 +42,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
     private static MarioMain instance;
 
-    private static String prefix = "§8[§6marioCST.de§8] §b";
+    private static String prefix;
 
     private static MasterConfig masterConfig;
     private PlayerCheatRecord playerCheatRecord;
@@ -74,14 +74,20 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
     @Override
     public void onEnable() {
-        register();
         initConfig();
+
+        setPrefix(getMasterConfig().getPrefix());
+
+        register();
+
 
         log("marioCST's PlugIn geladen!");
     }
 
     @Override
     public void onDisable() {
+        saveConfigs();
+
         log("marioCST's PlugIn entladen!");
     }
 
@@ -109,6 +115,17 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         }
         playerCheatRecord = new PlayerCheatRecord(new Config(this.getDataFolder() + "/record.yml", Config.YAML).getRootSection());
         playerIllegalItems = new PlayerIllegalItems(new Config(this.getDataFolder() + "/bannedIllegalPlayers.yml", Config.YAML).getRootSection());
+    }
+
+    public void saveConfigs() {
+        masterConfig.save();
+        playerCheatRecord.save();
+        playerIllegalItems.save();
+    }
+
+    public void reloadConfigs() {
+        Config c = new Config(this.getDataFolder() + "/config.yml", Config.YAML);
+        masterConfig = new MasterConfig(c.getRootSection());
     }
 
     @Override
@@ -179,6 +196,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
         commandMap.register("sendtitle", new SendTitleCommand(this));
 
         // Server
+        commandMap.register("configuration", new ConfigurationCommand(this));
         commandMap.register("kickall", new KickAllCommand(this));
         commandMap.register("staffchat", new StaffChatCommand(this));
         commandMap.register("tps", new TPSCommand(this));
@@ -192,6 +210,7 @@ public class MarioMain extends PluginBase implements AntiCheatAPI {
 
         // Setter
         commandMap.register("setlink", new SetLinkCommand(this));
+        commandMap.register("setprefix", new SetPrefixCommand(this));
 
         // World
         commandMap.register("day", new DayCommand(this));

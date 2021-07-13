@@ -28,3 +28,5 @@ idk lol
 [MobPlugin](https://cloudburstmc.org/resources/mobplugin.3/) für /troll tnt
 
 P.S.: BITTE Fehler in den Issues teilen! Pull Requests sind auch nett :)
+
+Diese Repository ist nun archiviert und Read-Only. Forks bleiben möglich. Das Plugin bleibt weiter unter der [Mario Plugin PowerNukkit](https://github.com/marioCST/MarioPlugInPowerNukkit) Repository
